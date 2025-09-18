@@ -30,27 +30,32 @@ export default function IndexPage() {
           </nav>
         </header>
 
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">Index</h1>
-          <p className="text-lg text-gray-600">Here&rsquo;s our most recent stuff . . .</p>
-        </div>
-        
-        <div className="bg-gray-50 p-8 rounded-lg max-w-2xl mx-auto">
-          <div className="space-y-0">
-            <p className="text-gray-700 mb-4">Here&rsquo;s our most recent stuff . . .</p>
-            {blogPostsArray.map((post, index) => (
-              <div key={post.slug}>
-                <Link 
-                  href={`/blog/${post.slug}`}
-                  className="text-blue-600 hover:text-blue-800 underline"
-                >
-                  {post.title}
-                </Link>
-                {index < blogPostsArray.length - 1 && <br />}
-              </div>
-            ))}
+        {/* Header Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-6 text-center">
+            <h1 className="text-6xl font-black text-gray-900 mb-6">Index</h1>
+            <p className="text-lg text-gray-600">Here&rsquo;s our most recent stuff . . .</p>
           </div>
-        </div>
+        </section>
+
+        {/* Content Section - Blue Background */}
+        <section className="bg-blue-400 text-white py-16">
+          <div className="max-w-4xl mx-auto px-6">
+            <p className="text-lg mb-6">Here&rsquo;s our most recent stuff . . .</p>
+            <div className="space-y-1">
+              {blogPostsArray.map((post) => (
+                <div key={post.slug}>
+                  <Link 
+                    href={`/blog/${post.slug}`}
+                    className="text-white hover:text-gray-200 underline block"
+                  >
+                    {post.title}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   );
