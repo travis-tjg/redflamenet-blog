@@ -8,6 +8,7 @@ export default function AdminPage() {
   const [htmlContent, setHtmlContent] = useState('');
   const [urlsList, setUrlsList] = useState('');
   const [output, setOutput] = useState('');
+  const [processedPreview, setProcessedPreview] = useState('');
   const [error, setError] = useState('');
   const [showOutput, setShowOutput] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
@@ -129,6 +130,7 @@ export default function AdminPage() {
 </html>`;
     
     setOutput(htmlOutput);
+    setProcessedPreview(processedArticle);
     setShowOutput(true);
   };
 
@@ -156,6 +158,7 @@ export default function AdminPage() {
     setHtmlContent('');
     setUrlsList('');
     setOutput('');
+    setProcessedPreview('');
     setShowOutput(false);
     setError('');
   };
@@ -284,7 +287,7 @@ export default function AdminPage() {
                     className="prose max-w-none text-gray-900"
                     style={{ color: '#111827' }}
                     dangerouslySetInnerHTML={{ 
-                      __html: processHtmlWithLinks(htmlContent, urlsList.split('\n').map(url => url.trim()).filter(url => url !== ''))
+                      __html: processedPreview
                     }}
                   />
                 </div>
