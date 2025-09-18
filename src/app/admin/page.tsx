@@ -137,7 +137,7 @@ export default function AdminPage() {
       await navigator.clipboard.writeText(output);
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 1500);
-    } catch (err) {
+    } catch {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
       textArea.value = output;

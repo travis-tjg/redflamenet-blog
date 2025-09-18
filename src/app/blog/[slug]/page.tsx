@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, BlogPost } from "@/data/blogPosts";
+import { blogPosts } from "@/data/blogPosts";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default async function BlogPost({ params }: PageProps) {
+export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = blogPosts[slug];
 
