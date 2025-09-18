@@ -31,33 +31,23 @@ export default function IndexPage() {
         </header>
 
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">All Posts</h1>
-          <p className="text-lg text-gray-600">Complete list of all blog posts</p>
+          <h1 className="text-4xl font-bold mb-4">Index</h1>
+          <p className="text-lg text-gray-600">Here&rsquo;s our most recent stuff . . .</p>
         </div>
         
-        <div className="bg-gray-50 p-8 rounded-lg">
-          <div className="grid gap-6">
-            {blogPostsArray.map((post) => (
-              <article key={post.slug} className="border-b border-gray-200 pb-4 last:border-b-0">
+        <div className="bg-gray-50 p-8 rounded-lg max-w-2xl mx-auto">
+          <div className="space-y-0">
+            <p className="text-gray-700 mb-4">Here&rsquo;s our most recent stuff . . .</p>
+            {blogPostsArray.map((post, index) => (
+              <div key={post.slug}>
                 <Link 
                   href={`/blog/${post.slug}`}
-                  className="text-blue-600 hover:text-blue-800 text-xl font-semibold block mb-2"
+                  className="text-blue-600 hover:text-blue-800 underline"
                 >
                   {post.title}
                 </Link>
-                <div className="text-sm text-gray-600 mb-2">
-                  <span>By {blogPosts[post.slug].author}</span>
-                  <span className="mx-2">•</span>
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <span className="inline-block bg-pink-500 text-white text-xs px-2 py-1 rounded">
-                    {blogPosts[post.slug].category}
-                  </span>
-                </div>
-                <p className="text-gray-700 text-sm">
-                  {blogPosts[post.slug].content.substring(0, 150)}...
-                </p>
-              </article>
+                {index < blogPostsArray.length - 1 && <br />}
+              </div>
             ))}
           </div>
         </div>
