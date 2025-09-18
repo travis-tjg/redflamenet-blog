@@ -1,19 +1,11 @@
 import Link from "next/link";
+import { blogPosts } from "@/data/blogPosts";
 
 export default function IndexPage() {
-  const blogPosts = [
-    { title: "301 Redirects", slug: "301-redirects" },
-    { title: "Peanut Allergies", slug: "peanut-allergies" },
-    { title: "How To Photograph Bears", slug: "how-to-photograph-bears" },
-    { title: "Why I Love Yorkies", slug: "why-i-love-yorkies" },
-    { title: "Drought Resistant Annuals", slug: "drought-resistant-annuals" },
-    { title: "Types Of Garlic", slug: "types-of-garlic" },
-    { title: "Choosing The Right Hot Water Tank", slug: "choosing-the-right-hot-water-tank" },
-    { title: "Google My Business For Local Businesses", slug: "google-my-business-for-local-businesses" },
-    { title: "Cauliflower Steaks", slug: "cauliflower-steaks" },
-    { title: "Carving Wood Spirits", slug: "carving-wood-spirits" },
-    { title: "Sample Post", slug: "sample-post" },
-  ];
+  // Convert blogPosts object to array and sort by date (newest first)
+  const blogPostsArray = Object.entries(blogPosts)
+    .map(([slug, post]) => ({ slug, title: post.title, date: post.date }))
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -45,7 +37,7 @@ export default function IndexPage() {
         
         <div className="bg-gray-50 p-8 rounded-lg">
           <div className="grid gap-4">
-            {blogPosts.map((post) => (
+            {blogPostsArray.map((post) => (
               <div key={post.slug}>
                 <Link 
                   href={`/blog/${post.slug}`}
