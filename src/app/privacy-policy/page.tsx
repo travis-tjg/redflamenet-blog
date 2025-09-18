@@ -1,22 +1,11 @@
 import Link from "next/link";
+import Navigation from "@/components/Navigation";
 
 export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
+      <Navigation />
       <main className="max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
-        <header className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto mb-8">
-          <div className="flex items-center">
-            <h1 className="text-xl font-bold text-gray-900">BingBangBoom</h1>
-            <span className="ml-4 text-sm text-gray-600">Enjoy looking around</span>
-          </div>
-          
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-700 hover:text-gray-900">Welcome</Link>
-            <Link href="/index" className="text-gray-700 hover:text-gray-900">Index</Link>
-            <Link href="/privacy-policy" className="text-pink-600 hover:text-pink-700 font-medium">Privacy Policy</Link>
-          </nav>
-        </header>
 
         <div className="mb-8">
           <Link href="/" className="text-blue-600 hover:text-blue-800">
