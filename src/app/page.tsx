@@ -20,7 +20,7 @@ export default function Home() {
         <section className="bg-blue-400 py-8">
           <div className="max-w-2xl mx-auto px-6 text-center">
             <p className="text-lg text-white mb-4">
-              Thanks for dropping in! Read our most recent posts by clicking here: <Link href="/index" className="text-white hover:text-gray-200 underline">index</Link>
+              Thanks for dropping in! Read our most recent posts by clicking here: <Link href="/posts" className="text-white hover:text-gray-200 underline">index</Link>
             </p>
           </div>
         </section>

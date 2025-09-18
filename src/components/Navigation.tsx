@@ -22,7 +22,7 @@ export default function Navigation() {
         
         <nav className="hidden md:flex items-center space-x-8">
           <Link href="/" className="text-gray-700 hover:text-gray-900">Welcome</Link>
-          <Link href="/index" className="text-red-600 hover:text-red-700 font-medium">Index</Link>
+          <Link href="/posts" className="text-red-600 hover:text-red-700 font-medium">Index</Link>
           <Link href="/privacy-policy" className="text-gray-700 hover:text-gray-900">Privacy Policy</Link>
         </nav>
 
@@ -56,8 +56,8 @@ export default function Navigation() {
           <div className="border-t border-gray-300 mt-4"></div>
           
           <div className="px-6 py-8">
-            <Link href="/" onClick={toggleMenu} className="block text-red-600 hover:text-red-700 text-4xl font-bold mb-8 underline">
-              Home
+            <Link href="/posts" onClick={toggleMenu} className="block text-red-600 hover:text-red-700 text-4xl font-bold mb-8 underline">
+              Index
             </Link>
           </div>
 
