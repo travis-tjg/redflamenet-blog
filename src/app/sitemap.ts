@@ -9,31 +9,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static pages
   const staticPages = [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 1,
     },
     {
-      url: `${baseUrl}/posts`,
+      url: `${baseUrl}/posts/`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/author`,
+      url: `${baseUrl}/author/`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/category`,
+      url: `${baseUrl}/category/`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/privacy-policy`,
+      url: `${baseUrl}/privacy-policy/`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.3,
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Dynamic blog post pages
   const blogPages = Object.keys(blogPosts).map((slug) => ({
-    url: `${baseUrl}/blog/${slug}`,
+    url: `${baseUrl}/blog/${slug}/`,
     lastModified: new Date(blogPosts[slug].date),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
