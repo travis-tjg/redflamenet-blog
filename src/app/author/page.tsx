@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { blogPosts } from "@/data/blogPosts";
 
-export default function IndexPage() {
-  // Convert blogPosts object to array and sort by date (newest first)
-  const blogPostsArray = Object.entries(blogPosts)
-    .map(([slug, post]) => ({ slug, title: post.title, date: post.date }))
+export default function AuthorPage() {
+  // Filter posts by admin author and sort by date (newest first)
+  const adminPosts = Object.entries(blogPosts)
+    .filter(([, post]) => post.author === "admin")
+    .map(([slug, post]) => ({ slug, title: post.title, date: post.date, category: post.category, content: post.content }))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
@@ -25,19 +26,19 @@ export default function IndexPage() {
           
           <nav className="hidden md:flex items-center space-x-8">
             <Link href="/" className="text-gray-700 hover:text-gray-900">Welcome</Link>
-            <Link href="/index" className="text-pink-600 hover:text-pink-700 font-medium">Index</Link>
+            <Link href="/index" className="text-gray-700 hover:text-gray-900">Index</Link>
             <Link href="/privacy-policy" className="text-gray-700 hover:text-gray-900">Privacy Policy</Link>
           </nav>
         </header>
 
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-4">All Posts</h1>
-          <p className="text-lg text-gray-600">Complete list of all blog posts</p>
+          <h1 className="text-4xl font-bold mb-4">Posts by Admin</h1>
+          <p className="text-lg text-gray-600">All posts authored by admin ({adminPosts.length} posts)</p>
         </div>
         
         <div className="bg-gray-50 p-8 rounded-lg">
           <div className="grid gap-6">
-            {blogPostsArray.map((post) => (
+            {adminPosts.map((post) => (
               <article key={post.slug} className="border-b border-gray-200 pb-4 last:border-b-0">
                 <Link 
                   href={`/blog/${post.slug}`}
@@ -46,16 +47,16 @@ export default function IndexPage() {
                   {post.title}
                 </Link>
                 <div className="text-sm text-gray-600 mb-2">
-                  <span>By {blogPosts[post.slug].author}</span>
+                  <span>By admin</span>
                   <span className="mx-2">•</span>
                   <span>{post.date}</span>
                   <span className="mx-2">•</span>
                   <span className="inline-block bg-pink-500 text-white text-xs px-2 py-1 rounded">
-                    {blogPosts[post.slug].category}
+                    {post.category}
                   </span>
                 </div>
                 <p className="text-gray-700 text-sm">
-                  {blogPosts[post.slug].content.substring(0, 150)}...
+                  {post.content.substring(0, 150)}...
                 </p>
               </article>
             ))}

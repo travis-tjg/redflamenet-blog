@@ -44,7 +44,17 @@ export default function Home() {
               </li>
               <li>
                 <Link href="/index" className="text-black hover:text-gray-700">
-                  Index
+                  All Posts
+                </Link>
+              </li>
+              <li>
+                <Link href="/author" className="text-black hover:text-gray-700">
+                  Author
+                </Link>
+              </li>
+              <li>
+                <Link href="/category" className="text-black hover:text-gray-700">
+                  Categories
                 </Link>
               </li>
               <li>
@@ -87,12 +97,22 @@ export default function Home() {
         {/* Content Section */}
         <section className="bg-blue-400 py-8">
           <div className="max-w-2xl mx-auto px-6 text-center">
-            <p className="text-lg text-white">
-              Thanks for dropping in! Read our most recent posts by clicking here:{" "}
-              <Link href="/index" className="text-white hover:text-gray-200 underline">
-                index
-              </Link>
+            <p className="text-lg text-white mb-4">
+              Thanks for dropping in! Browse our content:
             </p>
+            <div className="flex justify-center space-x-4 text-white">
+              <Link href="/index" className="hover:text-gray-200 underline">
+                All Posts
+              </Link>
+              <span>•</span>
+              <Link href="/author" className="hover:text-gray-200 underline">
+                By Author
+              </Link>
+              <span>•</span>
+              <Link href="/category" className="hover:text-gray-200 underline">
+                By Category
+              </Link>
+            </div>
           </div>
         </section>
       </main>
