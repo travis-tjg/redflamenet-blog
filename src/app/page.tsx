@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import SocialLinks from "@/components/SocialLinks";
+
+export const metadata: Metadata = {
+  title: "BingBangBoom",
+  description: "Enjoy looking around",
+  other: {
+    "msvalidate.01": "6782812150C4035371CC96B465CA06A2",
+  },
+};
 
 export default function Home() {
   return (
