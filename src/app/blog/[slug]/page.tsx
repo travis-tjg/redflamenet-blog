@@ -1,11 +1,48 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import { blogPosts } from "@/data/blogPosts";
 import Navigation from "@/components/Navigation";
 import SocialLinks from "@/components/SocialLinks";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts[slug];
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      description: "The requested blog post could not be found.",
+    };
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bingbangboom.com";
+  const canonicalUrl = `${siteUrl}/blog/${slug}`;
+
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: canonicalUrl,
+      type: "article",
+      publishedTime: new Date(post.date).toISOString(),
+      authors: [post.author],
+    },
+    twitter: {
+      card: "summary",
+      title: post.title,
+      description: post.description,
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
