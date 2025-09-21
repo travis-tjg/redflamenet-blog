@@ -20,8 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bingbangboom.com";
-  const canonicalUrl = `${siteUrl}/blog/${slug}`;
+  const canonicalUrl = `/blog/${slug}`;
 
   return {
     title: post.title,
