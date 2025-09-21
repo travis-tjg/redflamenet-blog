@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const canonicalUrl = `/blog/${slug}`;
+  const canonicalUrl = `/blog/${slug}/`;
 
   return {
     title: post.title,
