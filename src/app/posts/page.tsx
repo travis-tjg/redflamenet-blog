@@ -54,7 +54,7 @@ export default function IndexPage() {
             <h2 className="text-4xl font-black text-gray-900 mb-8">Read These</h2>
             <div className="space-y-4">
               <Link href="/blog/honey-badgers-natures-most-fearless-creatures" className="block text-red-600 hover:text-red-700 text-lg">
-                Honey Badgers: Nature's Most Fearless Creatures
+                Honey Badgers: Nature&rsquo;s Most Fearless Creatures
               </Link>
               <Link href="/blog/what-is-css" className="block text-red-600 hover:text-red-700 text-lg">
                 What Is CSS?
