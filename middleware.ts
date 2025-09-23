@@ -441,17 +441,10 @@ const simplePatterns = [
 ];
 
 // Pre-compiled regex patterns for special cases
-const regexPatterns: RegExp[] = (() => {
-  try {
-    return [
-      /Bark[rR]owler/i,
-      /Livelap[bB]ot/i
-    ];
-  } catch {
-    // Fallback if regex compilation fails
-    return [];
-  }
-})();
+const regexPatterns: RegExp[] = [
+  /Bark[rR]owler/i,
+  /Livelap[bB]ot/i
+];
 
 export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || '';
@@ -482,14 +475,9 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - _next/webpack-hmr (webpack hot reload)
-     * - favicon.ico (favicon file)
-     * - robots.txt (robots file)
-     * - sitemap.xml (sitemap file)
-     * - Static files in public folder (.svg, .png, .jpg, etc.)
+     * - _next (Next.js internal routes)
+     * - Static files
      */
-    '/((?!api|_next/static|_next/image|_next/webpack-hmr|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:ico|png|svg|jpg|jpeg|gif|webp|js|css|woff|woff2|ttf|eot)).*)',
+    '/((?!api|_next|favicon.ico|robots.txt|sitemap.xml).*)',
   ],
 }
