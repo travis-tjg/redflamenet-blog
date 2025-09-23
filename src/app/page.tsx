@@ -2,13 +2,11 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import SocialLinks from "@/components/SocialLinks";
+import ReadThese from "@/components/ReadThese";
 
 export const metadata: Metadata = {
-  title: "BingBangBoom",
-  description: "Enjoy looking around",
-  other: {
-    "msvalidate.01": "6782812150C4035371CC96B465CA06A2",
-  },
+  title: "RedFlameNet",
+  description: "Igniting innovation across the digital landscape",
 };
 
 export default function Home() {
@@ -44,36 +42,12 @@ export default function Home() {
           </div>
 
           {/* Read These Section */}
-          <div className="bg-white py-8">
-            <div className="max-w-4xl mx-auto px-6">
-              <h2 className="text-3xl font-bold text-black mb-6">Read These</h2>
-              <div className="space-y-3">
-                <Link href="/blog/honey-badgers-natures-most-fearless-creatures" className="block text-red-600 hover:text-red-700 text-lg">
-                  Honey Badgers: Nature&rsquo;s Most Fearless Creatures
-                </Link>
-                <Link href="/blog/what-is-css" className="block text-red-600 hover:text-red-700 text-lg">
-                  What Is CSS?
-                </Link>
-                <Link href="/blog/301-redirects" className="block text-red-600 hover:text-red-700 text-lg">
-                  301 Redirects
-                </Link>
-                <Link href="/blog/the-joy-of-learning-something-new" className="block text-red-600 hover:text-red-700 text-lg">
-                  The Joy of Learning Something New
-                </Link>
-                <Link href="/blog/test" className="block text-red-600 hover:text-red-700 text-lg">
-                  Test
-                </Link>
-                <Link href="/blog/unlocking-the-secrets-of-becoming-a-ghostwriter" className="block text-red-600 hover:text-red-700 text-lg">
-                  Unlocking the Secrets of Becoming a Ghostwriter: Mastering the Art of the Invisible Pen
-                </Link>
-              </div>
-            </div>
-          </div>
+          <ReadThese />
 
           {/* Footer Credits */}
           <div className="text-center pt-8 border-t border-gray-200">
             <div className="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-4 text-sm text-gray-700">
-              <span>© 2025 <Link href="/" className="hover:text-black">BingBangBoom</Link></span>
+              <span>© 2025 <Link href="/" className="hover:text-black">RedFlameNet</Link></span>
               <Link href="/privacy-policy" className="hover:text-black">Privacy Policy</Link>
               <span>Powered by WordPress</span>
               <a href="#" className="hover:text-black">To the top ↑</a>

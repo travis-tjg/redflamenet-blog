@@ -2,6 +2,7 @@ import Link from "next/link";
 import { blogPosts } from "@/data/blogPosts";
 import Navigation from "@/components/Navigation";
 import SocialLinks from "@/components/SocialLinks";
+import ReadThese from "@/components/ReadThese";
 
 export default function IndexPage() {
   // Convert blogPosts object to array and sort by date (newest first)
@@ -49,37 +50,13 @@ export default function IndexPage() {
         </section>
 
         {/* Read These Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-6">
-            <h2 className="text-4xl font-black text-gray-900 mb-8">Read These</h2>
-            <div className="space-y-4">
-              <Link href="/blog/honey-badgers-natures-most-fearless-creatures" className="block text-red-600 hover:text-red-700 text-lg">
-                Honey Badgers: Nature&rsquo;s Most Fearless Creatures
-              </Link>
-              <Link href="/blog/what-is-css" className="block text-red-600 hover:text-red-700 text-lg">
-                What Is CSS?
-              </Link>
-              <Link href="/blog/301-redirects" className="block text-red-600 hover:text-red-700 text-lg">
-                301 Redirects
-              </Link>
-              <Link href="/blog/the-joy-of-learning-something-new" className="block text-red-600 hover:text-red-700 text-lg">
-                The Joy of Learning Something New
-              </Link>
-              <Link href="/blog/test" className="block text-red-600 hover:text-red-700 text-lg">
-                Test
-              </Link>
-              <Link href="/blog/unlocking-the-secrets-of-becoming-a-ghostwriter" className="block text-red-600 hover:text-red-700 text-lg">
-                Unlocking the Secrets of Becoming a Ghostwriter: Mastering the Art of the Invisible Pen
-              </Link>
-            </div>
-          </div>
-        </section>
+        <ReadThese />
 
         {/* Footer */}
         <footer className="py-8 bg-gray-100 text-center text-sm text-gray-600">
           <div className="max-w-4xl mx-auto px-6">
             <div className="flex justify-center space-x-4">
-              <span>© 2025 BingBangBoom</span>
+              <span>© 2025 RedFlameNet</span>
               <Link href="/privacy-policy" className="hover:text-gray-900">Privacy Policy</Link>
               <span>Powered by WordPress</span>
               <Link href="#" className="hover:text-gray-900">To the top ↑</Link>

@@ -4,7 +4,7 @@ import { blogPosts } from '@/data/blogPosts';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://bingbangboom.org';
+  const baseUrl = 'https://redflamenet.org';
   
   // Static pages
   const staticPages = [

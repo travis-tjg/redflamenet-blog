@@ -15,9 +15,9 @@ export default function Navigation() {
       <header className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
         <div className="flex items-center">
           <Link href="/" className="text-xl font-bold text-gray-900 hover:text-gray-700">
-            BingBangBoom
+            RedFlameNet
           </Link>
-          <span className="ml-4 text-sm text-gray-600">Enjoy looking around</span>
+          <span className="ml-4 text-sm text-gray-600">Igniting innovation</span>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">

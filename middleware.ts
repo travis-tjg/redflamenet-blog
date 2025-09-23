@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// List of blocked user agents (converted from your htaccess)
-const blockedUserAgents = [
+// Simple string patterns for most user agents
+const simplePatterns = [
   'Apache-HttpClient',
   'curl',
   'LCC',
@@ -42,7 +42,6 @@ const blockedUserAgents = [
   'backlinkcrawler',
   'Baiduspider',
   'Baidu-YunGuanCe',
-  'Bark[rR]owler',
   'BazQux',
   'BDCbot',
   'BehloolBot',
@@ -215,7 +214,6 @@ const blockedUserAgents = [
   'LinkedInBot',
   'LinkisBot',
   'lipperhey',
-  'Livelap[bB]ot',
   'lssbot',
   'lssrocketcrawler',
   'ltx71',
@@ -442,27 +440,36 @@ const blockedUserAgents = [
   'ZuperlistBot'
 ];
 
+// Pre-compiled regex patterns for special cases
+const regexPatterns: RegExp[] = (() => {
+  try {
+    return [
+      /Bark[rR]owler/i,
+      /Livelap[bB]ot/i
+    ];
+  } catch {
+    // Fallback if regex compilation fails
+    return [];
+  }
+})();
+
 export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || '';
+  const userAgentLower = userAgent.toLowerCase();
   
-  // Check if user agent matches any blocked patterns (case insensitive)
-  const isBlocked = blockedUserAgents.some(blockedAgent => {
-    // Handle regex patterns like Bark[rR]owler and Livelap[bB]ot
-    const regexPattern = blockedAgent
-      .replace(/\[([^\]]+)\]/g, '[$1]') // Keep character classes as is
-      .replace(/([.*+?^${}()|[\]\\])/g, '\\$1'); // Escape other special chars
-    
-    try {
-      const regex = new RegExp(regexPattern, 'i');
-      return regex.test(userAgent);
-    } catch {
-      // Fallback to simple case-insensitive includes
-      return userAgent.toLowerCase().includes(blockedAgent.toLowerCase());
-    }
-  });
-
-  if (isBlocked) {
-    // Return 403 Forbidden response for blocked bots
+  // Check simple string patterns first (fastest)
+  const simpleMatch = simplePatterns.some(pattern => 
+    userAgentLower.includes(pattern.toLowerCase())
+  );
+  
+  if (simpleMatch) {
+    return new NextResponse('Forbidden', { status: 403 });
+  }
+  
+  // Check pre-compiled regex patterns
+  const regexMatch = regexPatterns.some(pattern => pattern.test(userAgent));
+  
+  if (regexMatch) {
     return new NextResponse('Forbidden', { status: 403 });
   }
 

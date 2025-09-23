@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/wp-admin/admin-ajax.php',
       },
     ],
-    sitemap: 'https://bingbangboom.org/sitemap.xml',
+    sitemap: 'https://redflamenet.org/sitemap.xml',
   };
 }

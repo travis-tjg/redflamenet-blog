@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BingBangBoom",
-  description: "Enjoy looking around",
+  title: "RedFlameNet",
+  description: "Igniting innovation across the digital landscape",
 };
 
 export default function RootLayout({
