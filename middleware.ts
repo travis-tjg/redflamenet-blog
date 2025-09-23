@@ -484,8 +484,12 @@ export const config = {
      * - api (API routes)
      * - _next/static (static files)
      * - _next/image (image optimization files)
+     * - _next/webpack-hmr (webpack hot reload)
      * - favicon.ico (favicon file)
+     * - robots.txt (robots file)
+     * - sitemap.xml (sitemap file)
+     * - Static files in public folder (.svg, .png, .jpg, etc.)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|_next/webpack-hmr|favicon.ico|robots.txt|sitemap.xml|.*\\.(?:ico|png|svg|jpg|jpeg|gif|webp|js|css|woff|woff2|ttf|eot)).*)',
   ],
 }
