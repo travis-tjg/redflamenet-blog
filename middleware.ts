@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Simple string patterns for most user agents
-const simplePatterns = [
+// List of blocked user agents (converted from your htaccess)
+const blockedUserAgents = [
   'Apache-HttpClient',
   'curl',
   'LCC',
@@ -42,6 +42,7 @@ const simplePatterns = [
   'backlinkcrawler',
   'Baiduspider',
   'Baidu-YunGuanCe',
+  'Bark[rR]owler',
   'BazQux',
   'BDCbot',
   'BehloolBot',
@@ -214,6 +215,7 @@ const simplePatterns = [
   'LinkedInBot',
   'LinkisBot',
   'lipperhey',
+  'Livelap[bB]ot',
   'lssbot',
   'lssrocketcrawler',
   'ltx71',
@@ -440,29 +442,27 @@ const simplePatterns = [
   'ZuperlistBot'
 ];
 
-// Pre-compiled regex patterns for special cases
-const regexPatterns: RegExp[] = [
-  /Bark[rR]owler/i,
-  /Livelap[bB]ot/i
-];
-
 export function middleware(request: NextRequest) {
   const userAgent = request.headers.get('user-agent') || '';
-  const userAgentLower = userAgent.toLowerCase();
   
-  // Check simple string patterns first (fastest)
-  const simpleMatch = simplePatterns.some(pattern => 
-    userAgentLower.includes(pattern.toLowerCase())
-  );
-  
-  if (simpleMatch) {
-    return new NextResponse('Forbidden', { status: 403 });
-  }
-  
-  // Check pre-compiled regex patterns
-  const regexMatch = regexPatterns.some(pattern => pattern.test(userAgent));
-  
-  if (regexMatch) {
+  // Check if user agent matches any blocked patterns (case insensitive)
+  const isBlocked = blockedUserAgents.some(blockedAgent => {
+    // Handle regex patterns like Bark[rR]owler and Livelap[bB]ot
+    const regexPattern = blockedAgent
+      .replace(/\[([^\]]+)\]/g, '[$1]') // Keep character classes as is
+      .replace(/([.*+?^${}()|[\]\\])/g, '\\$1'); // Escape other special chars
+    
+    try {
+      const regex = new RegExp(regexPattern, 'i');
+      return regex.test(userAgent);
+    } catch {
+      // Fallback to simple case-insensitive includes
+      return userAgent.toLowerCase().includes(blockedAgent.toLowerCase());
+    }
+  });
+
+  if (isBlocked) {
+    // Return 403 Forbidden response for blocked bots
     return new NextResponse('Forbidden', { status: 403 });
   }
 
@@ -475,9 +475,10 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
-     * - _next (Next.js internal routes)
-     * - Static files
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
      */
-    '/((?!api|_next|favicon.ico|robots.txt|sitemap.xml).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 }
