@@ -7,6 +7,9 @@ import ReadThese from "@/components/ReadThese";
 export const metadata: Metadata = {
   title: "RedFlameNet",
   description: "Igniting innovation across the digital landscape",
+  other: {
+    "msvalidate.01": "6782812150C4035371CC96B465CA06A2",
+  },
 };
 
 export default function Home() {
