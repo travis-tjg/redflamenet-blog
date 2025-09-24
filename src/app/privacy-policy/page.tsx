@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Who we are</h2>
-          <p>Our website address is: https://bingbangboom.org.</p>
+          <p>Our website address is: https://redflamedigital.net.</p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Comments</h2>
           <p>When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor&rsquo;s IP address and browser user agent string to help spam detection.</p>
