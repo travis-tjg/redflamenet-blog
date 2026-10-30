@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://redflamedigital.net"),
   title: "RedFlameNet",
   description: "Igniting innovation across the digital landscape",
 };

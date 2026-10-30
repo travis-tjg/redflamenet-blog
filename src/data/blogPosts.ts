@@ -1,3 +1,4 @@
+import discovery from "./discoveryPosts.json";
 export interface BlogPost {
   title: string;
   content: string;
@@ -7,7 +8,7 @@ export interface BlogPost {
   description: string;
 }
 
-export const blogPosts: Record<string, BlogPost> = {
+const basePosts: Record<string, BlogPost> = {
   "ai-machine-learning-revolution": {
     title: "The AI and Machine Learning Revolution: Transforming Industries",
     content: `The artificial <a href="https://weinsteinhub.blob.core.windows.net/$web/weinstein-article1.html" target="_blank" rel="noopener noreferrer">intelligence</a> and machine learning revolution is here, and it's transforming every industry imaginable. From healthcare to finance, transportation to entertainment, AI is reshaping how we work, live, and interact with technology.
@@ -230,3 +231,19 @@ While Web3 technology shows great promise, challenges remain around user experie
     description: "Understanding Web3 technology and how decentralized networks are reshaping digital ownership and internet governance."
   }
 };
+
+// Moved from bingbangboom.org 2026-10-30 (Bing never crawled them there).
+const moved: Record<string, BlogPost> = Object.fromEntries(
+  Object.entries(discovery as Record<string, { title: string; content: string; date: string; category: string; author: string }>).map(
+    ([slug, p]) => [slug, {
+      title: p.title,
+      content: p.content,
+      date: new Date(p.date).toISOString().slice(0, 10),
+      category: p.category === "UNCATEGORIZED" ? "General" : p.category,
+      author: p.author === "admin" ? "RedFlameNet Staff" : p.author,
+      description: p.content.replace(/<[^>]+>/g, " ").replace(/&#x27;/g, "'").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim().slice(0, 155),
+    }]
+  )
+);
+
+export const blogPosts: Record<string, BlogPost> = { ...basePosts, ...moved };
